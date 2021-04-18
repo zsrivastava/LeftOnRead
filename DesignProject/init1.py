@@ -60,10 +60,11 @@ def registerAuth():
             with connection.cursor() as cursor:
                 query = "INSERT INTO person (username, password, firstName, lastName) VALUES (%s, %s, %s, %s)"
                 cursor.execute(query, (username, plaintextPassword, firstName, lastName))
+                session['username'] = username
         except pymysql.err.IntegrityError:
             error = "%s is already taken." % (username)
             return render_template('register.html', error=error)    
-        session['username'] = username
+        
         return redirect(url_for("home"))
 
     error = "An error has occurred. Please try again."
