@@ -123,6 +123,7 @@ def movie_search():
 
 @app.route("/tvsearch", methods=["GET"])
 def tv_search():
+    @login_required
     username = session["username"]
     with connection.cursor() as cursor:
         query = "SELECT * FROM tvShows ORDER BY year DESC, RottenTomatoes DESC, title ASC"
@@ -132,6 +133,7 @@ def tv_search():
 
 @app.route("/gamesearch", methods=["GET"])
 def game_search():
+    @login_required
     username = session["username"]
     with connection.cursor() as cursor:
         query = "SELECT * FROM videoGames ORDER BY genre ASC, title ASC, console ASC"
