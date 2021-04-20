@@ -114,7 +114,7 @@ def book_search():
 def movie_search():
     username = session["username"]
     with connection.cursor() as cursor:
-        query = "SELECT * FROM movies ORDER BY year DESC"
+        query = "SELECT * FROM movies ORDER BY year DESC, title ASC, duration DESC"
         cursor.execute(query)
     data = cursor.fetchall()
     print(data)
