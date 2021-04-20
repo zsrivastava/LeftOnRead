@@ -4,7 +4,32 @@
         <title>TV Search</title>
     </head>
     <body>
+        <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
     <h1>TV Search</h1>
     <p>Allows user to browse tv shows and selects their favorites, which will be used for book recommendations</p>
+        <table>
+            <thead>
+                <tr>
+                <th>Show Title</th>
+                <th>Year</th>
+                <th>Rotten Tomatoes Score</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{item.Title}}</td>
+                    <td>{{item.Year}}</td>
+                    <td>{{item.RottenTomatoes}}</td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+            
     </body>
 </html>

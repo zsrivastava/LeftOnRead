@@ -121,13 +121,23 @@ def movie_search():
     
     return render_template("moviesearch.html", data = data)
 
-@app.route("/tvsearch")
+@app.route("/tvsearch", methods=["GET"])
 def tv_search():
-    return render_template("tvsearch.html")
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM tvShows ORDER BY year DESC, RottenTomatoes DESC, title ASC"
+        cursor.execute(query)
+    data = cursor.fetchall()
+    return render_template("tvsearch.html", data = data)
 
-@app.route("/gamesearch")
+@app.route("/gamesearch", methods=["GET"])
 def game_search():
-    return render_template("gamesearch.html")
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM videoGames ORDER BY genre ASC, title ASC, console ASC"
+        cursor.execute(query)
+    data = cursor.fetchall()
+    return render_template("gamesearch.html", data = data)
 
 @app.route("/favorites")
 def faves():
