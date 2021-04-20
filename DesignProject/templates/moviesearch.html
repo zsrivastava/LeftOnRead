@@ -4,7 +4,38 @@
     <title>Movie Search</title>
     </head>
     <body>
+        <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
     <h1>Movie Search</h1>
     <p>Allows user to browse movies and selects their favorites, which will be used for book recommendations</p>
+        <table>
+            <thead>
+                <tr>
+                <th>Movie Title</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Duration (in minutes)</th>
+                <th>Country</th>
+                <th>Director</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.year}}</td>
+                    <td>{{item.genre}}</td>
+                    <td>{{item.duration}}</td>
+                    <td>{{item.country}}</td>
+                    <td>{{item.director}}</td>
+                </tr>
+               {% endfor %}
+            </tbody>
+
+        </table>
     </body>
 </html>
