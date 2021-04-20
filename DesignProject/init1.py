@@ -34,7 +34,7 @@ def open():
 @login_required
 def home():
     username = session["username"]
-    print(username)
+#    print(username)
     with connection.cursor() as cursor:
         query = "SELECT * FROM person WHERE username = %s"
         cursor.execute(query, username)
@@ -109,9 +109,17 @@ def logout():
 def book_search():
     return render_template("booksearch.html")
 
-@app.route("/moviesearch")
+@app.route("/moviesearch", methods=["GET"])
+@login_required
 def movie_search():
-    return render_template("moviesearch.html")
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM movies ORDER BY year DESC"
+        cursor.execute(query)
+    data = cursor.fetchall()
+    print(data)
+    
+    return render_template("moviesearch.html", data = data)
 
 @app.route("/tvsearch")
 def tv_search():
