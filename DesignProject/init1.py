@@ -215,7 +215,7 @@ def delete_from_faves():
                 elem = []
                 if(name[-5:]=="Movie"):
                     elem.append(name[:-5])
-                    elem[1].append(name[-5:])
+                    elem.append(name[-5:])
                 elif(name[-7:] == "TV Show"):
                     elem.append(name[:-7])
                     elem.append(name[-7:])
