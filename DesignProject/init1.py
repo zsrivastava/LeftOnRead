@@ -91,7 +91,6 @@ def loginAuth():
         if data:
             session["username"] = username
             firstName = data['firstName']
-            #print(firstName)
             return redirect(url_for("home"))
 
         error = "Incorrect username or password."
@@ -121,9 +120,26 @@ def movie_search():
     
     return render_template("moviesearch.html", data = data)
 
+@app.route("/addFilmstoFavs", methods=["POST"])
+@login_required
+def films_to_faves():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        titles = request.form.getlist("faves_add")
+        media_type = "Movie"
+    with connection.cursor() as cursor:
+        for name in titles:
+            query = "INSERT INTO favorites VALUES (%s, %s, %s)"        
+            cursor.execute(query, (username, name, media_type))
+    data = cursor.fetchall()
+    message = "Successfully Added"
+    return redirect(url_for("faves"))
+#    return render_template("favorites.html", data = data)
+
 @app.route("/tvsearch", methods=["GET"])
+@login_required
 def tv_search():
-    @login_required
     username = session["username"]
     with connection.cursor() as cursor:
         query = "SELECT * FROM tvShows ORDER BY year DESC, RottenTomatoes DESC, title ASC"
@@ -131,19 +147,86 @@ def tv_search():
     data = cursor.fetchall()
     return render_template("tvsearch.html", data = data)
 
+@app.route("/addShowstoFavs", methods=["POST"])
+@login_required
+def tvshows_to_faves():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        titles = request.form.getlist("faves_add")
+        media_type = "TV Show"
+    with connection.cursor() as cursor:
+        for name in titles:
+            query = "INSERT INTO favorites VALUES (%s, %s, %s)"        
+            cursor.execute(query, (username, name, media_type))
+    data = cursor.fetchall()
+    message = "Successfully Added"
+    return redirect(url_for("faves"))
+    #return render_template("favorites.html", data = data)
+
 @app.route("/gamesearch", methods=["GET"])
+@login_required
 def game_search():
-    @login_required
     username = session["username"]
     with connection.cursor() as cursor:
-        query = "SELECT * FROM videoGames ORDER BY genre ASC, title ASC, console ASC"
+        query = "SELECT * FROM videoGames ORDER BY genre ASC, publisher ASC, title ASC, console ASC"
         cursor.execute(query)
     data = cursor.fetchall()
     return render_template("gamesearch.html", data = data)
 
+@app.route("/addGamestoFavs", methods=["POST"])
+@login_required
+def games_to_faves():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        titles = request.form.getlist("faves_add")
+        media_type = "Video Game"
+        for elem in titles:
+            print(elem)
+    with connection.cursor() as cursor:
+        for name in titles:
+            query = "INSERT INTO favorites VALUES (%s, %s, %s)"        
+            cursor.execute(query, (username, name, media_type))
+    data = cursor.fetchall()
+    message = "Successfully Added"
+    return redirect(url_for("faves"))
+#    return render_template("favorites.html", data = data)
+
 @app.route("/favorites")
 def faves():
-    return render_template("favorites.html")
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM favorites WHERE user_id = %s ORDER BY type"
+        cursor.execute(query, username)
+    data = cursor.fetchall()
+    return render_template("favorites.html", data = data)
+
+@app.route("/deleteFromFaves", methods=["GET", "POST"])
+@login_required
+def delete_from_faves():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        print(username)
+        titles = request.form.getlist("faves_delete")
+        with connection.cursor() as cursor:
+            for name in titles:
+                elem = []
+                if(name[-5:]=="Movie"):
+                    elem.append(name[:-5])
+                    elem[1].append(name[-5:])
+                elif(name[-7:] == "TV Show"):
+                    elem.append(name[:-7])
+                    elem.append(name[-7:])
+                elif(name[-10:]=="Video Game"):
+                    print(name[:-10])
+                    elem.append(name[:-10])
+                    elem.append(name[-10:])
+                
+                query = "DELETE FROM favorites WHERE user_id = %s AND title = %s AND type = %s"
+                cursor.execute(query, (username, elem[0], elem[1]))
+    return redirect(url_for("faves"))
 
 @app.route("/wishlist")
 def wish_list():
