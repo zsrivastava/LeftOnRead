@@ -104,9 +104,36 @@ def logout():
     session.pop("username")
     return redirect("/")
 
-@app.route("/booksearch") 
+@app.route("/booksearch", methods=["GET"]) 
+@login_required
 def book_search():
-    return render_template("booksearch.html")
+    with connection.cursor() as cursor:
+        query = "SELECT bookID, title, authors, language_code, num_pages, publication_date, publisher FROM books ORDER BY authors ASC, publication_date DESC, title ASC, publisher ASC"
+        cursor.execute(query)
+    data = cursor.fetchall()
+    return render_template("booksearch.html", data = data)
+
+@app.route("/moveBooks", methods=["POST"])
+@login_required
+def moveBooks():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        bookID_faves = request.form.getlist("faves")
+        bookID_wlist = request.form.getlist("wlist")
+        media_type = "Book"
+    with connection.cursor() as cursor:
+        for book in bookID_faves:
+            query1 = "SELECT title FROM books WHERE bookID = %s"
+            cursor.execute(query1, book)
+            data = cursor.fetchone()
+            print(data)
+            query2 = "INSERT INTO favorites VALUES (%s, %s, %s)"
+            cursor.execute(query2, (username, data['title'], media_type))
+        for book in bookID_wlist:
+            query = "INSERT INTO wish_list VALUES (%s, %s)"
+            cursor.execute(query, (username, book))
+    return redirect(url_for("home"))
 
 @app.route("/moviesearch", methods=["GET"])
 @login_required
@@ -220,17 +247,47 @@ def delete_from_faves():
                     elem.append(name[:-7])
                     elem.append(name[-7:])
                 elif(name[-10:]=="Video Game"):
-                    print(name[:-10])
                     elem.append(name[:-10])
                     elem.append(name[-10:])
+                elif(name[-4:] == "Book"):
+                    elem.append(name[:-4])
+                    elem.append(name[-4:])
                 
                 query = "DELETE FROM favorites WHERE user_id = %s AND title = %s AND type = %s"
                 cursor.execute(query, (username, elem[0], elem[1]))
     return redirect(url_for("faves"))
 
 @app.route("/wishlist")
+@login_required
 def wish_list():
-    return render_template("wishlist.html")
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT wish_list.bookID, title, authors, language_code, publication_date, publisher, num_pages, isbn13 FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s ORDER BY authors ASC"
+        cursor.execute(query, (username))
+    data = cursor.fetchall()
+    return render_template("wishlist.html", data = data)
+
+@app.route("/moveFromList", methods=["POST"])
+@login_required
+def move_from_list():
+    username = session["username"]
+    bookID_faves = request.form.getlist("faves")
+    bookID_remove = request.form.getlist("remove")
+    with connection.cursor() as cursor:
+        for book_id in bookID_faves:
+            print("Book ID", book_id)
+            query2 = "SELECT title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.bookID = %s"
+            cursor.execute(query2, book_id)
+            data = cursor.fetchone()
+            print(data)
+            query2 = "INSERT INTO favorites VALUES (%s, %s, %s)"
+            cursor.execute(query2, (username, data["title"], "Book"))
+            query1 = "DELETE FROM wish_list WHERE bookID = %s AND username = %s"
+            cursor.execute(query1, (book_id, username))
+        for book_id in bookID_remove:
+            query1 = "DELETE FROM wish_list WHERE bookID = %s AND username = %s"
+            cursor.execute(query1, (book_id, username))
+        return redirect(url_for("wish_list"))
 
 @app.route("/recs")
 def recs():
