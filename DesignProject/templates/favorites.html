@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./../../style.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-        
-        <title>Favorites</title>
+    <title>Favorites</title>
     </head>
-    <body id="homepage">
-        <div class="navbar">
-            <h1>Favorites for User</h1>
-        </div>
-    
-        <div class="options">
-            <p>Shows all of the users favorite books, movies, shows, games</p>
-        </div>
-        <div class="options">
-            <a href = "./../../LORHomePage.html">Homepage</a>
-            <a href = "./recs.html">View Book Recommendations</a>
-            <a href = "./wishlist.html">View Wish-List</a>
-            <a href = "./booksearch.html">Search Books</a>
-            <a href = "">Sign Out</a>
-        </div>
+    <body>
+    <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+    </style>
+    <h1>Favorites for User</h1>
+    <p>Shows all of the users favorite books, movies, shows, games</p>
+    <form action = "/deleteFromFaves", method="POST">
+        <table>
+            <thead>
+                <th>Title</th>
+                <th>Media Type</th>
+                <th>Remove From Favorites</th>
+            </thead>
+            {% for item in data %}
+            <tbody>
+                <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.type}}</td>
+                <td><input type="checkbox" name="faves_delete" value="{{item.title}}{{item.type}}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><input type="submit" value = Submit>
+        </form>
+    <br><a href="/home">Home</a><br>
     </body>
 </html>

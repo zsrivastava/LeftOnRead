@@ -11,6 +11,7 @@
 </style>
     <h1>Movie Search</h1>
     <p>Allows user to browse movies and selects their favorites, which will be used for book recommendations</p>
+        <form action = "/addFilmstoFavs", method="POST">
         <table>
             <thead>
                 <tr>
@@ -20,6 +21,7 @@
                 <th>Duration (in minutes)</th>
                 <th>Country</th>
                 <th>Director</th>
+                <th>Add to Favorites</th>
                     
                 </tr>
             </thead>
@@ -32,10 +34,13 @@
                     <td>{{item.duration}}</td>
                     <td>{{item.country}}</td>
                     <td>{{item.director}}</td>
+                    <td><input type="checkbox" name="faves_add" value="{{item.title}}"></td>
                 </tr>
                {% endfor %}
             </tbody>
 
         </table>
+        <input type="submit" value = Submit>
+        </form>
     </body>
 </html>

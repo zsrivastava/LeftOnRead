@@ -11,25 +11,29 @@
 </style>
     <h1>TV Search</h1>
     <p>Allows user to browse tv shows and selects their favorites, which will be used for book recommendations</p>
+        <form action = "/addShowstoFavs", method="POST">
         <table>
             <thead>
                 <tr>
                 <th>Show Title</th>
                 <th>Year</th>
                 <th>Rotten Tomatoes Score</th>
-                    
+                <th>Add to Favorites</th>  
                 </tr>
             </thead>
             <tbody>
             {% for item in data %}
                 <tr>
-                    <td>{{item.Title}}</td>
-                    <td>{{item.Year}}</td>
-                    <td>{{item.RottenTomatoes}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.year}}</td>
+                    <td>{{item.rottenTomatoes}}</td>
+                    <td><input type="checkbox" name="faves_add" value="{{item.title}}">
                 </tr>
                {% endfor %}
             </tbody>
         </table>
+        <input type="submit" value = Submit>
+        </form>
             
     </body>
 </html>
