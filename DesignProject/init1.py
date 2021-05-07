@@ -5,6 +5,8 @@ import hashlib
 import pymysql.cursors
 from functools import wraps
 import time
+import pandas as pd
+import numpy as np
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -134,6 +136,21 @@ def moveBooks():
             query = "INSERT INTO wish_list VALUES (%s, %s)"
             cursor.execute(query, (username, book))
     return redirect(url_for("home"))
+
+@app.route("/recsToList", methods=["POST"])
+@login_required
+def recsToBooks():
+    if request.files or request.data or request.form:
+        requestData = request.form
+        username = session["username"]
+        bookID_wlist = request.form.getlist("wlist")
+        media_type = "Book"
+    with connection.cursor() as cursor:
+        for book in bookID_wlist:
+            query = "INSERT INTO wish_list VALUES (%s, %s)"
+            cursor.execute(query, (username, book))
+    return redirect(url_for("home"))
+
 
 @app.route("/moviesearch", methods=["GET"])
 @login_required
@@ -275,11 +292,9 @@ def move_from_list():
     bookID_remove = request.form.getlist("remove")
     with connection.cursor() as cursor:
         for book_id in bookID_faves:
-            print("Book ID", book_id)
             query2 = "SELECT title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.bookID = %s"
             cursor.execute(query2, book_id)
             data = cursor.fetchone()
-            print(data)
             query2 = "INSERT INTO favorites VALUES (%s, %s, %s)"
             cursor.execute(query2, (username, data["title"], "Book"))
             query1 = "DELETE FROM wish_list WHERE bookID = %s AND username = %s"
@@ -289,8 +304,59 @@ def move_from_list():
             cursor.execute(query1, (book_id, username))
         return redirect(url_for("wish_list"))
 
-@app.route("/recs")
+@app.route("/recs", methods=["GET", "POST"])
+@login_required
 def recs():
+    username = session["username"]
+    with connection.cursor() as cursor:
+        query = "SELECT * FROM favorites WHERE user_id = %s"
+        cursor.execute(query, username)
+        data = cursor.fetchall()
+        types = []
+        titles = []
+        similar_interests = []
+        for elem in data:
+            query = "SELECT user_id FROM favorites WHERE title = %s AND type = %s AND user_id != %s"
+            cursor.execute(query, (elem['title'], elem['type'], username))
+            data = cursor.fetchall()
+            if(len(data) > 0):
+                for i in range(len(data)):
+                    similar_interests.append(data[i]['user_id'])
+        book_ids = []
+        for name in similar_interests:
+            query2 = "SELECT bookID FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s AND bookID NOT IN (SELECT bookID FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND bookID NOT IN (SELECT bookID FROM wish_list WHERE wish_list.username = %s)"
+            cursor.execute(query2, (name, username, username))
+            data = cursor.fetchall()
+            if(len(data) > 0):
+                for i in range(len(data)):
+                    book_ids.append(data[i]['bookID'])
+        book_ids = np.array(book_ids)
+        print(book_ids)
+        book_ids = np.reshape(book_ids, (len(book_ids), 1))
+        ones = np.ones(book_ids.shape)
+        book_ids = np.hstack((book_ids, ones))
+        df = pd.DataFrame(book_ids, columns = ['bookID', 'counts'])
+        df = df.groupby('bookID').sum().reset_index()
+#        df = df.sum().reset_index()
+        df.sort_values('bookID', ascending=False)
+        rec_ids = df['bookID'].to_numpy().astype(int)
+        print('Rec_Ids:', rec_ids)
+        
+        if(len(rec_ids > 10)):
+            rec_ids = rec_ids[:10]
+            
+        dataset = []
+        for book_id in rec_ids:
+            query3 = "SELECT * FROM books WHERE bookID = %s"
+            cursor.execute(query3, book_id)
+            data = cursor.fetchall()
+            dataset.append(data)
+#        print(dataset[1][1])
+    return render_template("recs.html", data = dataset)
+            
+        
+
+        
     return render_template("recs.html")
 
 @app.route("/admin")
