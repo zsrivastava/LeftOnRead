@@ -149,7 +149,7 @@ def recsToBooks():
         for book in bookID_wlist:
             query = "INSERT INTO wish_list VALUES (%s, %s)"
             cursor.execute(query, (username, book))
-    return redirect(url_for("home"))
+    return redirect(url_for("recs"))
 
 
 @app.route("/moviesearch", methods=["GET"])
@@ -358,7 +358,7 @@ def recs():
             query4 = "SELECT DISTINCT bookID, title, authors, language_code, publication_date, publisher, num_pages, isbn13 FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
             cursor.execute(query4, (username, username, username))
             data = cursor.fetchall()
-            for i in range(10):
+            for i in range(len(data)):
                 dataset.append([data[i]])
         
             return render_template("recs.html", data = dataset[:10])
