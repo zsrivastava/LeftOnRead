@@ -4,7 +4,44 @@
     <title>Recommendations</title>
     </head>
     <body>
+        <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
     <h1>User's generated recommendations</h1>
-    <p>Show's each unique user's book recommendations, gives option to add books to wish-list</p>
+    <p>Show's each unique user's book recommendations, gives option to add books to wish-list</p>    
+    <form action = "/recsToList", method="POST">
+    <table>
+            <thead>
+                <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Year Published</th>
+                <th>Publisher</th>
+                <th>Num. Pages</th>
+                <th>ISBN-13</th>
+                <th>Add to Wish-List</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{item[0].title}}</td>
+                    <td>{{item[0].authors}}</td>
+                    <td>{{item[0].language_code}}</td>
+                    <td>{{item[0].publication_date}}</td>
+                    <td>{{item[0].publisher}}</td>
+                    <td>{{item[0].num_pages}}</td>
+                    <td>{{item[0].isbn13}}</td>
+                    <td><input type="checkbox", id = wlist, name="wlist" value= "{{item[0].bookID}}" ></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><input type="submit" value = Submit>
+        </form>
+        <br><a href="/home">Home</a><br>
     </body>
 </html>
