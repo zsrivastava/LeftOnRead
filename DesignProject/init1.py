@@ -355,7 +355,7 @@ def recs():
         if(len(dataset) >= 5):
             return render_template("recs.html", data = dataset)
         else:
-            query4 = "SELECT DISTINCT bookID, title, authors, language_code, publication_date, publisher, num_pages, isbn13 FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
+            query4 = "SELECT DISTINCT bookID, title, authors, language_code, publication_date, publisher, num_pages, isbn13 FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s AND favorites.type = 'Book') AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s AND favorites.type = 'Book') AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
             cursor.execute(query4, (username, username, username))
             data = cursor.fetchall()
             for i in range(len(data)):
