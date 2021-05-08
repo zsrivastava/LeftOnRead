@@ -315,7 +315,7 @@ def recs():
         types = []
         titles = []
         similar_interests = []
-        print(data)
+#        print(data)
         for elem in data:
             query = "SELECT user_id FROM favorites WHERE title = %s AND type = %s AND user_id != %s"
             cursor.execute(query, (elem['title'], elem['type'], username))
@@ -332,7 +332,7 @@ def recs():
                 for i in range(len(data)):
                     book_ids.append(data[i]['bookID'])
         book_ids = np.array(book_ids)
-        print(book_ids)
+#        print(book_ids)
         book_ids = np.reshape(book_ids, (len(book_ids), 1))
         ones = np.ones(book_ids.shape)
         book_ids = np.hstack((book_ids, ones))
@@ -341,7 +341,7 @@ def recs():
 #        df = df.sum().reset_index()
         df.sort_values('bookID', ascending=False)
         rec_ids = df['bookID'].to_numpy().astype(int)
-        print('Rec_Ids:', rec_ids)
+#        print('Rec_Ids:', rec_ids)
         
         if(len(rec_ids > 10)):
             rec_ids = rec_ids[:10]
@@ -352,17 +352,16 @@ def recs():
             cursor.execute(query3, book_id)
             data = cursor.fetchall()
             dataset.append(data)   
-        if(len(rec_ids) > 5):
-            pass
+        if(len(dataset) >= 5):
+            return render_template("recs.html", data = dataset)
         else:
-#            print("Nope")
-#            query4 = "SELECT title FROM favorites WHERE type = 'Book' AND user_id = %s"
-            query4 = "SELECT * FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
+            query4 = "SELECT DISTINCT bookID, title, authors, language_code, publication_date, publisher, num_pages, isbn13 FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
             cursor.execute(query4, (username, username, username))
             data = cursor.fetchall()
-            dataset.append(data)
-        dataset = dataset[:10]
-    return render_template("recs.html", data = dataset)
+            for i in range(10):
+                dataset.append([data[i]])
+        
+            return render_template("recs.html", data = dataset[:10])
         
 
         
