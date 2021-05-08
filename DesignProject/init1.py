@@ -315,6 +315,7 @@ def recs():
         types = []
         titles = []
         similar_interests = []
+        print(data)
         for elem in data:
             query = "SELECT user_id FROM favorites WHERE title = %s AND type = %s AND user_id != %s"
             cursor.execute(query, (elem['title'], elem['type'], username))
@@ -350,10 +351,18 @@ def recs():
             query3 = "SELECT * FROM books WHERE bookID = %s"
             cursor.execute(query3, book_id)
             data = cursor.fetchall()
+            dataset.append(data)   
+        if(len(rec_ids) > 5):
+            pass
+        else:
+#            print("Nope")
+#            query4 = "SELECT title FROM favorites WHERE type = 'Book' AND user_id = %s"
+            query4 = "SELECT * FROM books WHERE authors IN (SELECT authors FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM favorites INNER JOIN books ON favorites.title = books.title WHERE favorites.user_id = %s) AND title NOT IN (SELECT books.title FROM wish_list INNER JOIN books ON wish_list.bookID = books.bookID WHERE wish_list.username = %s)"
+            cursor.execute(query4, (username, username, username))
+            data = cursor.fetchall()
             dataset.append(data)
-#        print(dataset[1][1])
+        dataset = dataset[:10]
     return render_template("recs.html", data = dataset)
-            
         
 
         
