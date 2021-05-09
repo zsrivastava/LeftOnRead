@@ -109,6 +109,7 @@ def logout():
 @app.route("/booksearch", methods=["GET"]) 
 @login_required
 def book_search():
+#    print("Book search")
     with connection.cursor() as cursor:
         query = "SELECT bookID, title, authors, language_code, num_pages, publication_date, publisher FROM books ORDER BY authors ASC, publication_date DESC, title ASC, publisher ASC"
         cursor.execute(query)
@@ -116,6 +117,7 @@ def book_search():
     return render_template("booksearch.html", data = data)
 
 @app.route("/moveBooks", methods=["POST"])
+
 @login_required
 def moveBooks():
     if request.files or request.data or request.form:
