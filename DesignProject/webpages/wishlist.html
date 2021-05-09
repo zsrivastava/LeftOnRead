@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wishlist</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="wish_page">
+    <div class="navbar_wish">
+      <a class="logo_wish" href="homepage_login.html">Left on Read</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="recs.html">Recommendations</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="signout_wish" href="">Sign Out</a>
+    </div>
+    <div class="title_wish">
+      <h1>wishlist</h1>
+    </div>
+    <div class="tableSection_wish">
+
+      <form action= "/moveFromList", method="POST">
+        <table id="wishtable", class="center">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Language</th>
+              <th>Year Published</th>
+              <th>Publisher</th>
+              <th>Num. Pages</th>
+              <th>ISBN-13</th>
+              <th>Remove From Favorites</th>
+              <th>Remove from Wishlist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.authors}}</td>
+              <td>{{item.language_code}}</td>
+              <td>{{item.publication_date}}</td>
+              <td>{{item.publisher}}</td>
+              <td>{{item.num_pages}}</td>
+              <td>{{item.isbn13}}</td>
+              <td><input type="checkbox", id = faves, name="faves" value= "{{item.bookID}}" ></td>
+              <td><input type="checkbox", id = wlist, name="remove" value= "{{item.bookID}}" ></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" value=Submit id="submitButton_wish">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

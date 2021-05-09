@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TV Search</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="tvsearch_page">
+    <div class="navbar_tv">
+      <a class="logo_tv" href="homepage_login.html">Left on Read</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="recs.html">Recommendations</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="signout_tv" href="">Sign Out</a>
+    </div>
+
+    <div class="tableSection_tv">
+      <div class="title_tv">
+        <h1>tv shows</h1>
+      </div>
+
+      <form action= "/addShowstoFavs", method="POST">
+        <table id="tvtable", class="center">
+          <thead>
+            <tr>
+              <th>Show Title</th>
+              <th>Year</th>
+              <th>Rotten Tomatoes Score</th>
+              <th>Add to Favorites</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.year}}</td>
+              <td>{{item.rottenTomatoes}}</td>
+              <td><input type="checkbox" name="faves_add" value="{{item.title}}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" value=Submit id="submitButton_tv">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Search</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="booksearch_page">
+    <div class="navbar_book">
+      <a class="logo_book" href="homepage_login.html">Left on Read</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="recs.html">Recommendations</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="signout_book" href="">Sign Out</a>
+    </div>
+
+    <div class="tableSection_book">
+      <div class="title_book">
+        <h1>Books</h1>
+      </div>
+
+      <form action= "/moveBooks", method="POST">
+        <table id="booktable", class="center">
+          <thead>
+            <tr>
+              <th>Book Title</th>
+              <th>Author</th>
+              <th>Language</th>
+              <th>Year Published</th>
+              <th>Publisher</th>
+              <th>Num. Pages</th>
+              <th>Add to Favorites</th>
+              <th>Add to Wishlist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.authors}}</td>
+              <td>{{item.language_code}}</td>
+              <td>{{item.publication_date}}</td>
+              <td>{{item.publisher}}</td>
+              <td>{{item.num_pages}}</td>
+              <td><input type="checkbox", id=faves, name="faves" value="{{item.bookID}}"></td>
+              <td><input type="checkbox", id = wlist, name="wlist" value= "{{item.bookID}}" ></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" value=Submit id="submitButton_book">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

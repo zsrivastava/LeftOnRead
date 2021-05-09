@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Favorites</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="favorites_page">
+    <div class="navbar_favorites">
+      <a class="logo_favorites" href="homepage_login.html">Left on Read</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="recs.html">Recommendations</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="signout_favorites" href="">Sign Out</a>
+    </div>
+    <div class="title_favorites">
+      <h1>Favorites</h1>
+    </div>
+    <div class="tableSection_favorites">
+
+      <form action = "/deleteFromFaves", method="POST">
+        <table id="favoritestable", class="center">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Media Type</th>
+              <th>Remove From Favorites</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.type}</td>
+              <td><input type="checkbox" name="faves_delete" value="{{item.title}}{{item.type}}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" value=Submit id="submitButton_fav">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

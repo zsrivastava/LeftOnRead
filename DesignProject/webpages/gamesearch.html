@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game Search</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="gamesearch_page">
+    <div class="navbar_game">
+      <a class="logo_game" href="homepage_login.html">Left on Read</a>
+      <a href="favorites.html">Favorites</a>
+      <a href="recs.html">Recommendations</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a class="signout_game" href="">Sign Out</a>
+    </div>
+
+    <div class="tableSection_game">
+      <div class="title_game">
+        <h1>games</h1>
+      </div>
+
+      <form action = "/addGamestoFavs", method="POST">
+        <table id="gametable", class="center">
+          <thead>
+            <tr>
+              <th>Game Title</th>
+              <th>Console</th>
+              <th>Genre</th>
+              <th>Publisher</th>
+              <th>Add to Favorites</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.console}}</td>
+              <td>{{item.genre}}</td>
+              <td>{{item.publisher}}</td>
+              <td><input type="checkbox" name="faves_add" value="{{item.title}}"></td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="submit" value=Submit id="submitButton_game">
+      </form>
+    </div>
+  </div>
+  </body>
+</html>

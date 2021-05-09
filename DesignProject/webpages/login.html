@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page_login">
+    <h2>Log In</h2>
+
+      <form class="login_window" action="/loginAuth" method="POST">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" placeholder="enter" required/><br>
+        <label for="password">Password</label><br>
+        <input type="text" name="password" placeholder="enter" required/><br>
+        <input type="submit" value=Login id="login_btn">
+        <p>Don't have an account? <a href="register.html">Sign Up now</a></p>
+      </form>    
+  </div>
+</body>
+</html>

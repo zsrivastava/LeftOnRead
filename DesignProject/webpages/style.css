@@ -1,0 +1,1091 @@
+/*
+Website colors
+#4C1036 dark magenta
+#72195A magenta
+#6B5CA5 purple
+#71A9F7 blue
+#C6D8FF light blue
+*/
+
+*{
+  margin:0;
+  padding:0;
+  font-family:Helvetica;
+}
+
+/*Homepage Before Login*/
+.top_homeNL{
+  background:#C6D8FF;
+  width:100%;
+  height: 400px;
+  position:absolute;
+}
+.top_homeNL h4{
+  padding-top:10px;
+  padding-left:10px;
+  color:white;
+  font-size: 20px;
+  letter-spacing:1px;
+}
+.content_homeNL{
+  top: 235px;
+  position:absolute;
+  margin-left:auto;
+  margin-right:auto;
+}
+.content_homeNL img{
+  display:block;
+  margin-left:auto;
+  width: 700px;
+}
+.login_btn{
+  text-decoration: none;
+  border: 3px solid #72195A;
+  background-color:white;
+  color:#72195A;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:20px;
+  padding:6px 15px;
+  border-radius:20px;
+  margin-left:645px;
+  letter-spacing:1px;
+}
+.register_btn{
+  text-decoration: none;
+  border: 3px solid #72195A;
+  background-color:#72195A;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:20px;
+  padding:5px 15px;
+  border-radius:20px;
+  margin-left:20px;
+  letter-spacing:1px;
+}
+.content_homeNL p{
+  padding-top: 50px;
+  padding-bottom: 200px;
+  width: 650px;
+  margin-left:450px;
+  line-height:20px;
+}
+/*BookSearch*/
+/*body{
+  background:#C6D8FF;
+}*/
+.booksearch_page{
+  background:#C6D8FF;
+  width:100%;
+  height:100%;
+}
+.navbar_book{
+  background:white;
+  overflow:hidden;
+}
+
+.navbar_book a {
+  float:left;
+  color:black;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+
+.logo_book{
+  color:#C6D8FF !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+
+.signout_book{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_book{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:#C6D8FF;
+}
+.title_book h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+}
+
+#booktable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #E0E0E2;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  
+}
+
+#booktable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#booktable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#booktable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#booktable td input{
+  text-align:center !important;
+  
+}
+
+#submitButton_book{
+  border: 2px solid #72195A;
+  background-color:white;
+  color:#72195A;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:8px;
+  margin-top:10px;
+}
+
+/*Game Search*/
+.gamesearch_page{
+  background:#6B5CA5;
+  width:100%;
+  height:100%;
+}
+.navbar_game{
+  background:white;
+  overflow:hidden;
+}
+
+.navbar_game a {
+  float:left;
+  color:black;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+
+.logo_game{
+  color:#6B5CA5 !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+
+.signout_game{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_game{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:#6B5CA5;
+}
+.title_game h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+}
+
+#gametable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #E0E0E2;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  
+}
+
+#gametable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#gametable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#gametable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#gametable td input{
+  text-align:center !important;
+  
+}
+
+#submitButton_game{
+  border: 2px solid #71A9F7;
+  background-color:white;
+  color:#71A9F7;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:8px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+/* Movie*/
+.moviesearch_page{
+  background:#4C1036;
+  width:100%;
+  height:100%;
+}
+.navbar_movie{
+  background:white;
+  overflow:hidden;
+}
+
+.navbar_movie a {
+  float:left;
+  color:black;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+
+.logo_movie{
+  color:#4C1036 !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+
+.signout_movie{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_movie{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:#4C1036;
+}
+.title_movie h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+}
+
+#movietable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #E0E0E2;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  
+}
+
+#movietable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#movietable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#movietable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#gametable td input{
+  text-align:center !important;
+}
+
+#submitButton_movie{
+  border: 2px solid #C6D8FF;
+  background-color:white;
+  color:#C6D8FF;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:8px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+/*TV SHows*/
+.tvsearch_page{
+  background:#72195A;
+  width:100%;
+  height:100%;
+}
+.navbar_tv{
+  background:white;
+  overflow:hidden;
+}
+
+.navbar_tv a {
+  float:left;
+  color:black;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+
+.logo_tv{
+  color:#72195A !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+
+.signout_tv{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_tv{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:#72195A;
+}
+.title_tv h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+}
+
+#tvtable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #E0E0E2;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  
+}
+
+#tvstable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#tvtable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#tvtable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#tvtable td input{
+  text-align:center !important;
+}
+
+#submitButton_tv{
+  border: 2px solid #71A9F7;
+  background-color:white;
+  color:#71A9F7;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:8px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+/*
+Login Page
+*/
+.page_login{
+  background: #71A9F7 !important;
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+.page_login h2{
+  padding: 70px 10px 10px 0;
+  text-align:center;
+  color:white;
+  text-transform:lowercase;
+}
+
+.login_window{
+  background: white;
+  padding: 15px 20px 0 20px;
+  margin:auto;
+  width:30%;
+  height:30%;
+  text-transform:lowercase;
+  border-radius:25px;
+  text-align:center;
+
+}
+.login_window input[type=text], select{
+  width:100%;
+  padding:5px 10px;
+  display: inline-block;
+  border:2px solid #6B5CA5;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.login_window label{
+  color:#72195A;
+  padding:5px;
+  text-align:left !important;
+}
+.login_window p{
+  padding:10px;
+  color:#6B5CA5;
+  font-size:12px;
+}
+.login_window p a{
+  color:#6B5CA5;
+}
+#login_btn{
+  border:none;
+  text-align:center;
+  background-color:#6B5CA5;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:20px;
+  margin-top:10px;
+  letter-spacing:1px;
+  cursor: pointer;
+}
+
+/*Register*/
+.page_register{
+  background: #C6D8FF !important;
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+.page_register h2{
+  padding: 50px 10px 10px 0;
+  text-align:center;
+  color:white;
+  text-transform:lowercase;
+}
+.register_window{
+  background: white;
+  padding: 15px 20px 10px 20px;
+  margin:auto;
+  width:30%;
+  height:40%;
+  text-transform:lowercase;
+  border-radius:25px;
+  text-align:center;
+}
+.register_window p{
+  padding: 10px;
+  color:#72195A;
+  font: size 14px;
+}
+.register_window p a{
+  color:#72195A;
+}
+.register_window label{
+  color:#6B5CA5;
+  padding:5px 10px;
+  text-align:left !important;
+}
+.register_window input[type=text], select{
+  width:100%;
+  padding:5px 10px;
+  display: inline-block;
+  border:2px solid #71A9F7;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+#register_btn{
+  border:none;
+  text-align:center;
+  background-color:#72195A;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:20px;
+  margin-top:10px;
+  letter-spacing:1px;
+  cursor: pointer;
+}
+
+/*Home log in page*/
+.page_homelogin{
+  background: white !important;
+  width:100%;
+  height:100%;
+  position:absolute;
+}
+.navbar_homelogin{
+  background:white;
+  overflow:hidden;
+}
+.navbar_homelogin a{
+  float:left;
+  color:black;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+}
+.logo_homelogin{
+  color:#6B5CA5 !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+.signout_homelogin{
+  right:14px;
+  position:absolute;
+}
+.searchlinks_container{
+  background:#C6D8FF;
+  position: absolute;
+  width:100%;
+  height: 375px;
+  top:150px;
+}
+#booksRect{
+  fill: white;
+  stroke:#4C1036;
+  stroke-width:5px;
+}
+.booksRectClass{
+  position:absolute;
+  overflow:visible;
+  width:253.405px;
+  height:253.405px;
+  left:120px;
+  top: 30px;
+}
+#Icon_ionic-ios-book{
+  position:absolute;
+  width: 129.281px;
+  height: 119.38px;
+  left:185.229px;
+  top:91.04px;
+  overflow:visible;
+}
+.Path_1{
+  overflow:visible;
+  position:absolute;
+  width: 61.531px;
+  height: 119.349px;
+  left:0px;
+  top:0.031px;
+  transform: matrix(1,0,0,1,0,0);
+}
+.Path_2 {
+  overflow: visible;
+  position: absolute;
+  width: 61.531px;
+  height: 119.349px;
+  left: 67.75px;
+  top: 0px;
+  transform: matrix(1,0,0,1,0,0);
+}
+.books_homeL h3{
+  left:224px;
+  top: 300px;
+  position:absolute;
+  overflow:visible;
+  width:89px;
+  white-space:nowrap;
+  text-align:left;
+  font-size:20px;
+  color: #4C1036;
+  text-transform: lowercase;
+}
+
+.moviesRectClass{
+  position:absolute;
+  overflow:visible;
+  width:253.405px;
+  height:253.405px;
+  left: 405px;
+  top: 30px;
+}
+#moviesRect{
+  fill: white;
+  stroke:#72195A;
+  stroke-width:5px;
+}
+.Icon_material-movie{
+  overflow: visible;
+	position: absolute;
+	width: 150.82px;
+	height: 120.656px;
+	left: 460px;
+	top: 92px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.movies_homeL h3{
+  left:494px ;
+  top:300px;
+  position:absolute;
+  overflow:visible;
+  width:103px;
+  white-space:nowrap;
+  text-align:left;
+  font-size: 20px;
+  color:#72195A;
+}
+
+
+.tvRectClass{
+  position:absolute;
+  overflow:visible;
+  width:253.405px;
+  height:253.405px;
+  left: 693px;
+  top: 30px;
+}
+#tvRect{
+  fill: white;
+  stroke:#4C1036;
+  stroke-width:5px;
+}
+.Icon_awesome-tv{
+  overflow: visible;
+	position: absolute;
+	width: 152.693px;
+	height: 122.154px;
+	left: 744.957px;
+	top: 97.219px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.tvshows_homeL h3{
+  left: 775px;
+  top: 300px;
+  position:absolute;
+  overflow:visible;
+  white-space:nowrap;
+  text-align:left;
+  font-size:20px;
+  color:#4C1036;
+}
+.gamesRectClass{
+  position:absolute;
+  overflow:visible;
+  width:253.405px;
+  height:253.405px;
+  left: 978px;
+  top: 30px;
+}
+#gamesRect{
+  fill: white;
+  stroke:#72195A;
+  stroke-width:5px;
+}
+.Icon_metro-gamepad{
+  overflow: visible;
+	position: absolute;
+	width: 152.693px;
+	height: 122.154px;
+	left: 1029.957px;
+	top: 97.219px;
+	transform: matrix(1,0,0,1,0,0);
+}
+.games_homeL h3{
+  left: 1075px;
+  top:300px;
+  position:absolute;
+  overflow:visible;
+  white-space:nowrap;
+  text-align:left;
+  font-size:20px;
+  color:#72195A;
+}
+
+/*Recommendations*/
+.recs_page{
+  background:#71A9F7;
+  width:100%;
+  height:100%;
+}
+.navbar_recs{
+  background:#71A9F7;
+  overflow:hidden;
+}
+
+.navbar_recs a {
+  float:left;
+  color:white;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+  letter-spacing:1px;
+}
+
+.logo_recs{
+  color:white !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+.title_recs h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+  padding-top:10px;
+  padding-bottom: 20px;
+}
+.signout_recs{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_recs{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:white;
+  padding-top:10px;
+}
+
+
+#recstable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 90%;
+  background-color:white;
+  box-shadow:0 5px 10px #71A9F7;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  border:#71A9F7;
+  
+}
+
+#recstable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#recstable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#recstable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#recstable td input{
+  text-align:center !important;
+  
+}
+
+#submitButton_recs{
+  border: 2px solid #71A9F7;
+  background-color:#71A9F7;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:10px 15px;
+  border-radius:10px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+/*Favs*/
+.favorites_page{
+  background:#6B5CA5;
+  width:100%;
+  height:100%;
+}
+.navbar_favorites{
+  background:#6B5CA5;
+  overflow:hidden;
+}
+
+.navbar_favorites a {
+  float:left;
+  color:white;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+  letter-spacing:1px;
+}
+
+.logo_favorites{
+  color:white !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+.title_favorites h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+  padding-top:10px;
+  padding-bottom: 20px;
+}
+.signout_favorites{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_favorites{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:white;
+  padding-top:10px;
+}
+
+
+#favoritestable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #6B5CA5;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  border:#6B5CA5;
+  
+}
+
+#favoritestable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#favoritestable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#favoritestable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#favoritestable td input{
+  text-align:center !important;
+  
+}
+
+#submitButton_fav{
+  border: 2px solid #6B5CA5;
+  background-color:#6B5CA5;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:10px 15px;
+  border-radius:10px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
+
+/*Wishlist*/
+.wish_page{
+  background:#72195A;
+  width:100%;
+  height:100%;
+}
+.navbar_wish{
+  background:#72195A;
+  overflow:hidden;
+}
+
+.navbar_wish a {
+  float:left;
+  color:white;
+  font-family: Helvetica Neue;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  text-transform: lowercase;
+  letter-spacing:1px;
+}
+
+.logo_wish{
+  color:white !important;
+  font-size:16px !important;
+  font-weight:bold;
+}
+.title_wish h1{
+  text-align:center;
+  text-transform:lowercase;
+  color:white;
+  position:relative;
+  font-size: 40px;
+  margin-top:10px;
+  padding-top:10px;
+  padding-bottom: 20px;
+}
+.signout_wish{
+  right:14px;
+  position:absolute;
+}
+
+.tableSection_wish{
+  text-align:center;
+  height: 100vh;
+  justify-content:center;
+  align-items:center;
+  background:white;
+  padding-top:10px;
+}
+
+
+#wishtable {
+  border-collapse:collapse;
+  align-items:center;
+  width: 60%;
+  background-color:white;
+  box-shadow:0 5px 10px #72195A;
+  text-align:left;
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right:auto;
+  overflow:hidden;
+  border-radius:5px;
+  border:#6B5CA5;
+  
+}
+
+#wishtable thead{
+  box-shadow: 0 5px 10px #E0E0E2;
+}
+
+#wishtable th{
+  padding: 0.9rem 1rem;
+  text-transform:lowercase;
+  letter-spacing:1px;
+  text-align:center;
+  font-size: 12px;
+  font-weight:900;
+}
+
+#wishtable td{
+  padding: 5px 10px;
+  text-align:center;
+}
+#wishtable td input{
+  text-align:center !important;
+  
+}
+
+#submitButton_wish{
+  border: 2px solid #72195A;
+  background-color:#72195A;
+  color:white;
+  font-weight:bold;
+  text-transform:lowercase;
+  font-size:12px;
+  padding:10px 15px;
+  border-radius:10px;
+  margin-top:10px;
+  letter-spacing:1px;
+}
