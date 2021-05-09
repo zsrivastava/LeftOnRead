@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title>Movie Search</title>
-    </head>
-    <body>
-        <style type="text/css">
-	table, th, td{
-		border: 1px solid black;
-	}
-</style>
-    <h1>Movie Search</h1>
-    <p>Allows user to browse movies and selects their favorites, which will be used for book recommendations</p>
-        <form action = "/addFilmstoFavs", method="POST">
-        <table>
-            <thead>
-                <tr>
-                <th>Movie Title</th>
-                <th>Year</th>
-                <th>Genre</th>
-                <th>Duration (in minutes)</th>
-                <th>Country</th>
-                <th>Director</th>
-                <th>Add to Favorites</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-            {% for item in data %}
-                <tr>
-                    <td>{{item.title}}</td>
-                    <td>{{item.year}}</td>
-                    <td>{{item.genre}}</td>
-                    <td>{{item.duration}}</td>
-                    <td>{{item.country}}</td>
-                    <td>{{item.director}}</td>
-                    <td><input type="checkbox" name="faves_add" value="{{item.title}}"></td>
-                </tr>
-               {% endfor %}
-            </tbody>
+<!--    <link rel="stylesheet" href="style.css">-->
+      <link rel="stylesheet" type="text/css" href="static/style.css">
+  </head>
 
+  <body>
+    <div class="moviesearch_page">
+    <div class="navbar_movie">
+      <a class="logo_movie" href="/home">Left on Read</a>
+       <a href="/favorites">Favorites</a>
+      <a href="/recs">Recommendations</a>
+      <a href="/wishlist">Wishlist</a>
+      <a class="signout_book" href="/">Sign Out</a>
+    </div>
+
+    <div class="tableSection_movie">
+      <div class="title_movie">
+        <h1>movie</h1>
+      </div>
+
+      <form action = "/addFilmstoFavs", method="POST">
+        <table id="movietable", class="center">
+          <thead>
+            <tr>
+              <th>Movie Title</th>
+              <th>Year</th>
+              <th>Genre</th>
+              <th>Duration</th>
+              <th>Country</th>
+              <th>Director</th>
+              <th>Add to Favorites</th>
+
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in data %}
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.year}}</td>
+              <td>{{item.genre}}</td>
+              <td>{{item.duration}}</td>
+              <td>{{item.country}}</td>
+              <td>{{item.director}}</td>
+              <td><input type="checkbox" name="faves_add" value="{{item.title}}"></td>
+            </tr>
+              {% endfor %}
+          </tbody>
         </table>
-        <input type="submit" value = Submit>
-        </form>
-    </body>
+        <input type="submit" value=Submit id="submitButton_movie">
+      </form>
+    </div>
+  </div>
+  </body>
 </html>

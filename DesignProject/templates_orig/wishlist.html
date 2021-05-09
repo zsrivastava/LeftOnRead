@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Book Wish-List</title>
+    </head>
+    <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+        </style>
+    <body>
+    <h1>User's Wish-List</h1>
+    <form action = "/moveFromList", method="POST">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Year Published</th>
+                <th>Publisher</th>
+                <th>Num. Pages</th>
+                <th>ISBN-13</th>
+                <th>Add to Favorites</th>
+                <th>Remove from Wish-List</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.authors}}</td>
+                    <td>{{item.language_code}}</td>
+                    <td>{{item.publication_date}}</td>
+                    <td>{{item.publisher}}</td>
+                    <td>{{item.num_pages}}</td>
+                    <td>{{item.isbn13}}</td>
+                    <td><input type="checkbox", id = faves, name="faves" value= "{{item.bookID}}" ></td>
+                    <td><input type="checkbox", id = wlist, name="remove" value= "{{item.bookID}}" ></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    <br><br><input type="submit" value = Submit>
+    </form>
+    <p>Lists books that are on the user's wish-list, will give option to take off wish-list, or add to favorite books</p>
+    <a href="/favorites">Favorites</a><br><br>
+    <a href="/home">Home</a><br>
+    </body>
+</html>

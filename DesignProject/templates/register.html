@@ -1,20 +1,38 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Register</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+<!--  <link rel="stylesheet" href="style.css">-->
+<link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-<form action="/registerAuth" method="POST">
-<h1>Register Here</h1>
-<input type="text" name = "firstName" placeholder="First Name" required/> <br>
-<input type="text" name = "lastName" placeholder="Last Name" required/> <br><br>
-<input type="text" name = "username" placeholder="username" required/> <br>
-<input type="password" name = "password" placeholder="password" required/><br><br>
-<input type="submit" value = Register>
-    {% if error %}
-		<p class="error"><strong>Error:</strong> {{error}}</p>
-	{% endif %}
-    
-    
-</form>    
+  <div class="page_register">
+    <h2>Join</h2>
+
+    <form class="register_window" action="/registerAuth" method="POST">
+      <label>First Name</label>
+      <br>
+      <input type="text" placeholder="enter">
+      <br>
+      <label>Last Name</label>
+      <br>
+      <input type="text" placeholder="enter">
+      <br>
+      <label>Username</label>
+      <br>
+      <input type="text" placeholder="enter">
+      <br>
+      <label>Password</label>
+      <br>
+      <input type="password" placeholder="enter">
+      <br>
+      <input type="submit" value=Register id="register_btn">
+      <p>Already have an account? <a href="/login">Log in</a></p>
+    </form>
+
+  </div>
 </body>
 </html>

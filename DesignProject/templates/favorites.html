@@ -1,36 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title>Favorites</title>
-    </head>
-    <body>
-    <style type="text/css">
-	table, th, td{
-		border: 1px solid black;
-	}
-    </style>
-    <h1>Favorites for User</h1>
-    <p>Shows all of the users favorite books, movies, shows, games</p>
-    <form action = "/deleteFromFaves", method="POST">
-        <table>
-            <thead>
-                <th>Title</th>
-                <th>Media Type</th>
-                <th>Remove From Favorites</th>
-            </thead>
-            {% for item in data %}
-            <tbody>
-                <tr>
-                <td>{{item.title}}</td>
-                <td>{{item.type}}</td>
-                <td><input type="checkbox" name="faves_delete" value="{{item.title}}{{item.type}}"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
+<!--    <link rel="stylesheet" href="style.css">-->
+      <link rel="stylesheet" type="text/css" href="static/style.css">
+  </head>
+
+  <body>
+    <div class="favorites_page">
+    <div class="navbar_favorites">
+      <a class="logo_favorites" href="/home">Left on Read</a>
+       <a href="/favorites">Favorites</a>
+      <a href="/recs">Recommendations</a>
+      <a href="/wishlist">Wishlist</a>
+      <a class="signout_book" href="/">Sign Out</a>
+    </div>
+    <div class="title_favorites">
+      <h1>Favorites</h1>
+    </div>
+    <div class="tableSection_favorites">
+
+      <form action = "/deleteFromFaves", method="POST">
+        <table id="favoritestable", class="center">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Media Type</th>
+              <th>Remove From Favorites</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in data %}
+            <tr>
+              <td>{{item.title}}</td>
+              <td>{{item.type}}</td>
+              <td><input type="checkbox" name="faves_delete" value="{{item.title}}{{item.type}}"></td>
+            </tr>
+              {% endfor %}
+          </tbody>
         </table>
-        <br><input type="submit" value = Submit>
-        </form>
-        <br><a href="/recs">Generate Reccomendations</a><br>
-        <br><a href="/home">Home</a><br>
-    </body>
+        <input type="submit" value=Submit id="submitButton_fav">
+      </form>
+    </div>
+  </div>
+  </body>
 </html>

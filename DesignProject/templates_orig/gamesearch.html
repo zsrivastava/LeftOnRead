@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Video Game Search</title>
+    </head>
+    <body>
+    <style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+        </style>
+    <h1>Video Game Search</h1>
+    <p>Allows user to browse video games and selects their favorites, which will be used for book recommendations</p>
+        <form action = "/addGamestoFavs", method="POST">
+        <table>
+            <thead>
+                <tr>
+                <th>Game Title</th>
+                <th>Console</th>
+                <th>Genre</th>
+                <th>Publisher</th>
+                <th>Add to Favorites</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{item.title}}</td>
+                    <td>{{item.console}}</td>
+                    <td>{{item.genre}}</td>
+                    <td>{{item.publisher}}</td>
+                <td><input type="checkbox" name="faves_add" value= "{{item.title}}" ></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value = Submit>
+        </form>
+    </body>
+</html>
